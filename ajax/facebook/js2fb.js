@@ -8,6 +8,12 @@ var js2fb = new function () {
     var friend = facebook_friend;
     var enums = facebook_enums;
     var event = facebook_event;
+    var page = facebook_page;
+    var video = facebook_video;
+    var photo = facebook_photo;
+    var tag = facebook_tag;
+    
+    
 
     //getters
     this.helper = helper;
@@ -16,6 +22,10 @@ var js2fb = new function () {
     this.friend = friend;
     this.enums = enums;
     this.event = event;
+    this.page = page;
+    this.video = video;
+    this.photo = photo;
+    this.tag = tag;
     
 
 
