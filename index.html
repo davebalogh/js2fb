@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="ajax/jquery/jquery-1.6.min.js"></script>
+    <script type="text/javascript" src="ajax/jquery/jquery.format.js"></script>
+    <script type="text/javascript" src="ajax/facebook/SimpleFBJs.min.js"></script>
+   
+     
+</head>
+<body>
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+
+<div id="loginContainer">
+    <fb:login-button v="2" size="medium"
+    perms="publish_stream,email,user_birthday,user_relationships,user_photos,user_videos,user_status,user_about_me,user_activities,user_events,user_groups,user_interests,friends_photos,user_relationships,friends_relationships">
+        <fb:intl>Conect&aacute; con Facebook</fb:intl>
+    </fb:login-button>
+</div>
+<div id="logoutContainer">
+<a href="javascript:void(0)" onclick="SimpleFBJs.logout();">salir</a>
+</div>
+<script type="text/javascript">
+
+
+    SimpleFBJs.helper().setLoginButtonId('loginContainer');
+    SimpleFBJs.helper().setLogoutButtonId('logoutContainer');
+    SimpleFBJs.initAndLogin('266713253341903');
+    alert(SimpleFBJs.user().getReferenceUri());
+    
+//    facebook.user().loadMe(function (response) {
+//        alert(response.first_name);
+//    });
+
+//    facebook.user().getStatus(null, function (response) {
+//        alert(response[0].message);
+//    });
+
+    //    facebook.user().getStatusCount(null, function (response) {
+    //        alert(response.length);
+    //    });
+
+//        facebook.album().getList(null, function (response) {
+//            alert(response.length);
+//        });
+
+//    facebook.album().get(468451852220, function (response) {
+//            alert(response[0].name);
+    //        });
+
+//            facebook.album().getListFromFriends(null, function (response) {
+//                alert(response.length);
+//            });
+
+//        facebook.friend().getList(null, function (response) {
+//                alert(response.length);
+    //            });
+
+//            facebook.friend().getListBySex(null, 'male', function (response) {
+//                    alert(response.length);
+//                    });
+
+//    SimpleFBJs.friend().getListByRelationshipStatus(null, 'single', function (response) {
+//        alert(response.length);
+//    });
+</script>
+</body>
+</html>
