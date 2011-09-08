@@ -12,8 +12,7 @@ var js2fb = new function () {
     var video = facebook_video;
     var photo = facebook_photo;
     var tag = facebook_tag;
-    
-    
+    var publish = facebook_publish;
 
     //getters
     this.helper = helper;
@@ -26,8 +25,8 @@ var js2fb = new function () {
     this.video = video;
     this.photo = photo;
     this.tag = tag;
+    this.publish = publish;
     
-
 
     //función que se debe llamar inicialmente para cargar la app e inicilizar las clases de FB
     this.initAndLogin = function (appId) {
