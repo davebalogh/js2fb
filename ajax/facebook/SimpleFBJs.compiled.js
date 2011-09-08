@@ -12,14 +12,14 @@ var facebook_album = new function () {
     this.getList = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT aid, object_id, owner, cover_object_id, name, created, description, size FROM album WHERE owner = %d', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //obtiene un album a partir del object_id
     //perms: user_photos, friends_photos
     this.get = function (objid, functionCallBack) {
         var query = $.format('SELECT object_id, owner, cover_object_id, name, created, description, size FROM album WHERE object_id = %d', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
 
@@ -28,33 +28,34 @@ var facebook_album = new function () {
     this.getListFromFriends = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT aid, object_id, owner, cover_object_id, name, created, description, size FROM album WHERE owner in (SELECT uid2 FROM friend WHERE uid1 =  %d) LIMIT 500', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
 };﻿
 var facebook_enums = new function () {
 
     //fql reference doc
+
     this.sex = {
-        male : 'male',
-        female : 'female'
+        male: 'male',
+        female: 'female'
     };
-    
+
     //fql reference doc
     this.relationShipStatus = {
-        Single : 'Single',
-        In_a_Relationship : 'In a Relationship', 
-        In_an_Open_Relationship : 'In an Open Relationship',
-        Engaged : 'Engaged',
-        Married : 'Married',
-        It_is_Complicated : 'It\'is Complicated',
-        Widowed : 'Widowed'
+        Single: 'Single',
+        In_a_Relationship: 'In a Relationship',
+        In_an_Open_Relationship: 'In an Open Relationship',
+        Engaged: 'Engaged',
+        Married: 'Married',
+        It_is_Complicated: 'It\'is Complicated',
+        Widowed: 'Widowed'
     };
 
     this.eventStatus = {
-        attending : 'attending',
-        unsure : 'unsure',
-        declined : 'declined',
+        attending: 'attending',
+        unsure: 'unsure',
+        declined: 'declined',
         not_replied: 'not_replied'
     };
 };﻿
@@ -74,7 +75,7 @@ var facebook_event = new function () {
     this.getList = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT eid, name, pic, description, start_time, end_time, creator, location FROM event WHERE eid in (SELECT eid FROM event_member where uid = %d)', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //obtiene el listado de eventos creados por un usuario, retorna un array con objetos de tipo event.
@@ -82,7 +83,7 @@ var facebook_event = new function () {
     this.getListCreated = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT eid, name, pic, description, start_time, end_time, creator, location FROM event WHERE creator = %d', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
 
@@ -91,21 +92,21 @@ var facebook_event = new function () {
     this.getListByStatus = function (facebookid, rsvp_status, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT eid, name, pic, description, start_time, end_time, creator, location FROM event WHERE eid in (SELECT eid FROM event_member where rsvp_status=\'%s\' and uid = %d)', [rsvp_status,objid]);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //retorna listado de miembros de un evento
     //perms: user_events, friends_events
     this.getMembers = function (eventid, functionCallBack) {
         var query = $.format('SELECT uid, first_name, last_name, name, sex, username FROM user WHERE uid in (SELECT uid from event_member where eid=%d)', eventid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //retorna listado de miembros de un evento, filtrando por status de enums.eventStatus
     //perms: user_events, friends_events
     this.getMembersByStatus = function (eventid, rsvp_status, functionCallBack) {
         var query = $.format('SELECT uid, first_name, last_name, name, sex, username FROM user WHERE uid in (SELECT uid from event_member where eid=%d and rsvp_status=\'%s\')', [eventid, rsvp_status]);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //retorna listado de eventos creados por amigos
@@ -113,7 +114,7 @@ var facebook_event = new function () {
     this.getListCreatedFromFriends = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT eid, name, pic, description, start_time, end_time, creator, location FROM event WHERE creator in (SELECT uid2 FROM friend WHERE uid1=%d)', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //retorna listado de eventos a los cuales fueron invitados amigos
@@ -121,7 +122,7 @@ var facebook_event = new function () {
     this.getListFromFriends = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT eid, name, pic, description, start_time, end_time, creator, location FROM event WHERE eid in (SELECT eid from event_member where uid in (SELECT uid2 FROM friend WHERE uid1=%d))', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //retorna listado de eventos a los cuales fueron invitados amigos y ademas filtra por status: enums.eventStatus
@@ -129,7 +130,7 @@ var facebook_event = new function () {
     this.getListFromFriendsByStatus = function (facebookid, rsvp_status, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT eid, name, pic, description, start_time, end_time, creator, location FROM event WHERE eid in (SELECT eid from event_member where rsvp_status=\'%s\' and uid in (SELECT uid2 FROM friend WHERE uid1=%d))', [rsvp_status,objid]);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
     
 };﻿
@@ -145,7 +146,7 @@ var facebook_friend = new function () {
     this.getList = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT uid, first_name, last_name, name, sex, username, relationship_status FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=%d)', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //obtiene el listado de amigos de un usuario, filtrando por sexo
@@ -153,15 +154,16 @@ var facebook_friend = new function () {
     this.getListBySex = function (facebookid, sex, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT uid, first_name, last_name, name, sex, username, relationship_status FROM user WHERE sex=\'%s\' and uid in (SELECT uid2 FROM friend WHERE uid1=%d)', [sex, objid]);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //obtiene el listado de amigos de un usuario, filtrando por relationship_status
     //perms: basic, user_relationships, friends_relationships
     this.getListByRelationshipStatus = function (facebookid, relationship_status, functionCallBack) {
+        //var args = arguments;
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT uid, first_name, last_name, name, sex, username, relationship_status FROM user WHERE relationship_status=\'%s\' and uid in (SELECT uid2 FROM friend WHERE uid1=%d)', [relationship_status, objid]);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 };﻿
 var facebook_helper = new function () {
@@ -325,11 +327,11 @@ var facebook_user = new function () {
         if (FB.getSession() != null) {
             FB.api('/me', function (response) {
                 facebookMe = response;
-                SimpleFBJs.helper().createAndExectuteCallBack(functionCallBack, response);
+                SimpleFBJs.helper.createAndExectuteCallBack(functionCallBack, response);
             });
         }
         else {
-            SimpleFBJs.helper().newException('the session is null');
+            SimpleFBJs.helper.newException('the session is null');
         }
 
     };
@@ -340,7 +342,7 @@ var facebook_user = new function () {
     this.getStatus = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT uid, message FROM status WHERE uid = %d LIMIT 1', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //obtiene la cantidad de status que ha escrito un usuario o el usuario logueado.
@@ -349,7 +351,7 @@ var facebook_user = new function () {
     this.getStatusCount = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT status_id FROM status WHERE uid = %d ', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //obtiene el listado de amigos de un usuario especifico
@@ -357,7 +359,7 @@ var facebook_user = new function () {
     this.get = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT uid, first_name, last_name, name, sex, username, relationship_status, birthday FROM user WHERE uid=%d', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //retorna url de imagen de 50x50 sin necesidad de estar logueado.
@@ -377,12 +379,12 @@ var SimpleFBJs = new function () {
     var event = facebook_event;
 
     //getters
-    this.helper = function () { return helper; };
-    this.user = function () { return user; };
-    this.album = function () { return album; };
-    this.friend = function () { return friend; };
-    this.enums = function () { return enums; };
-    this.event = function () { return event; };
+    this.helper = helper;
+    this.user = user;
+    this.album = album;
+    this.friend = friend;
+    this.enums = enums;
+    this.event = event;
     
 
 

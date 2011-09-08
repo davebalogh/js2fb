@@ -12,14 +12,14 @@ var facebook_album = new function () {
     this.getList = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT aid, object_id, owner, cover_object_id, name, created, description, size FROM album WHERE owner = %d', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
     //obtiene un album a partir del object_id
     //perms: user_photos, friends_photos
     this.get = function (objid, functionCallBack) {
         var query = $.format('SELECT object_id, owner, cover_object_id, name, created, description, size FROM album WHERE object_id = %d', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
 
@@ -28,7 +28,7 @@ var facebook_album = new function () {
     this.getListFromFriends = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT aid, object_id, owner, cover_object_id, name, created, description, size FROM album WHERE owner in (SELECT uid2 FROM friend WHERE uid1 =  %d) LIMIT 500', objid);
-        SimpleFBJs.helper().callFqlQuery(query, functionCallBack);
+        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
     };
 
 };

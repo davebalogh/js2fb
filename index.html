@@ -24,16 +24,16 @@
 <script type="text/javascript">
 
 
-    SimpleFBJs.helper().setLoginButtonId('loginContainer');
-    SimpleFBJs.helper().setLogoutButtonId('logoutContainer');
+    SimpleFBJs.helper.setLoginButtonId('loginContainer');
+    SimpleFBJs.helper.setLogoutButtonId('logoutContainer');
     SimpleFBJs.initAndLogin('266713253341903');
-    alert(SimpleFBJs.user().getReferenceUri());
+    alert(SimpleFBJs.user.getReferenceUri());
     
 //    facebook.user().loadMe(function (response) {
 //        alert(response.first_name);
 //    });
 
-//    facebook.user().getStatus(null, function (response) {
+//    SimpleFBJs.user().getStatus(null, function (response) {
 //        alert(response[0].message);
 //    });
 
@@ -61,9 +61,10 @@
 //                    alert(response.length);
 //                    });
 
-//    SimpleFBJs.friend().getListByRelationshipStatus(null, 'single', function (response) {
-//        alert(response.length);
-//    });
+
+    SimpleFBJs.friend.getListByRelationshipStatus(null, SimpleFBJs.enums.relationShipStatus.Single, function (response) {
+        alert(response.length);
+    });
 </script>
 </body>
 </html>

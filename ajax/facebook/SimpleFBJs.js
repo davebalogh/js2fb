@@ -10,12 +10,12 @@ var SimpleFBJs = new function () {
     var event = facebook_event;
 
     //getters
-    this.helper = function () { return helper; };
-    this.user = function () { return user; };
-    this.album = function () { return album; };
-    this.friend = function () { return friend; };
-    this.enums = function () { return enums; };
-    this.event = function () { return event; };
+    this.helper = helper;
+    this.user = user;
+    this.album = album;
+    this.friend = friend;
+    this.enums = enums;
+    this.event = event;
     
 
 
