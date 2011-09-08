@@ -15,7 +15,7 @@ var facebook_event = new function () {
     this.getList = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT eid, name, pic, description, start_time, end_time, creator, location FROM event WHERE eid in (SELECT eid FROM event_member where uid = %d)', objid);
-        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
     };
 
     //obtiene el listado de eventos creados por un usuario, retorna un array con objetos de tipo event.
@@ -23,7 +23,7 @@ var facebook_event = new function () {
     this.getListCreated = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT eid, name, pic, description, start_time, end_time, creator, location FROM event WHERE creator = %d', objid);
-        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
     };
 
 
@@ -32,21 +32,21 @@ var facebook_event = new function () {
     this.getListByStatus = function (facebookid, rsvp_status, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT eid, name, pic, description, start_time, end_time, creator, location FROM event WHERE eid in (SELECT eid FROM event_member where rsvp_status=\'%s\' and uid = %d)', [rsvp_status,objid]);
-        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
     };
 
     //retorna listado de miembros de un evento
     //perms: user_events, friends_events
     this.getMembers = function (eventid, functionCallBack) {
         var query = $.format('SELECT uid, first_name, last_name, name, sex, username FROM user WHERE uid in (SELECT uid from event_member where eid=%d)', eventid);
-        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
     };
 
     //retorna listado de miembros de un evento, filtrando por status de enums.eventStatus
     //perms: user_events, friends_events
     this.getMembersByStatus = function (eventid, rsvp_status, functionCallBack) {
         var query = $.format('SELECT uid, first_name, last_name, name, sex, username FROM user WHERE uid in (SELECT uid from event_member where eid=%d and rsvp_status=\'%s\')', [eventid, rsvp_status]);
-        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
     };
 
     //retorna listado de eventos creados por amigos
@@ -54,7 +54,7 @@ var facebook_event = new function () {
     this.getListCreatedFromFriends = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT eid, name, pic, description, start_time, end_time, creator, location FROM event WHERE creator in (SELECT uid2 FROM friend WHERE uid1=%d)', objid);
-        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
     };
 
     //retorna listado de eventos a los cuales fueron invitados amigos
@@ -62,7 +62,7 @@ var facebook_event = new function () {
     this.getListFromFriends = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT eid, name, pic, description, start_time, end_time, creator, location FROM event WHERE eid in (SELECT eid from event_member where uid in (SELECT uid2 FROM friend WHERE uid1=%d))', objid);
-        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
     };
 
     //retorna listado de eventos a los cuales fueron invitados amigos y ademas filtra por status: enums.eventStatus
@@ -70,7 +70,7 @@ var facebook_event = new function () {
     this.getListFromFriendsByStatus = function (facebookid, rsvp_status, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT eid, name, pic, description, start_time, end_time, creator, location FROM event WHERE eid in (SELECT eid from event_member where rsvp_status=\'%s\' and uid in (SELECT uid2 FROM friend WHERE uid1=%d))', [rsvp_status,objid]);
-        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
     };
     
 };

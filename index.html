@@ -4,7 +4,7 @@
     <title></title>
     <script type="text/javascript" src="ajax/jquery/jquery-1.6.min.js"></script>
     <script type="text/javascript" src="ajax/jquery/jquery.format.js"></script>
-    <script type="text/javascript" src="ajax/facebook/SimpleFBJs.min.js"></script>
+    <script type="text/javascript" src="ajax/facebook/js2fb.min.js"></script>
    
      
 </head>
@@ -24,10 +24,10 @@
 <script type="text/javascript">
 
 
-    SimpleFBJs.helper.setLoginButtonId('loginContainer');
-    SimpleFBJs.helper.setLogoutButtonId('logoutContainer');
-    SimpleFBJs.initAndLogin('266713253341903');
-    alert(SimpleFBJs.user.getReferenceUri());
+    js2fb.helper.setLoginButtonId('loginContainer');
+    js2fb.helper.setLogoutButtonId('logoutContainer');
+    js2fb.initAndLogin('266713253341903');
+    alert(js2fb.user.getReferenceUri());
     
 //    facebook.user().loadMe(function (response) {
 //        alert(response.first_name);
@@ -62,7 +62,7 @@
 //                    });
 
 
-    SimpleFBJs.friend.getListByRelationshipStatus(null, SimpleFBJs.enums.relationShipStatus.Single, function (response) {
+    js2fb.friend.getListByRelationshipStatus(null, js2fb.enums.relationShipStatus.Single, function (response) {
         alert(response.length);
     });
 </script>

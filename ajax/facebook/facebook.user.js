@@ -25,11 +25,11 @@ var facebook_user = new function () {
         if (FB.getSession() != null) {
             FB.api('/me', function (response) {
                 facebookMe = response;
-                SimpleFBJs.helper.createAndExectuteCallBack(functionCallBack, response);
+                js2fb.helper.createAndExectuteCallBack(functionCallBack, response);
             });
         }
         else {
-            SimpleFBJs.helper.newException('the session is null');
+            js2fb.helper.newException('the session is null');
         }
 
     };
@@ -40,7 +40,7 @@ var facebook_user = new function () {
     this.getStatus = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT uid, message FROM status WHERE uid = %d LIMIT 1', objid);
-        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
     };
 
     //obtiene la cantidad de status que ha escrito un usuario o el usuario logueado.
@@ -49,7 +49,7 @@ var facebook_user = new function () {
     this.getStatusCount = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT status_id FROM status WHERE uid = %d ', objid);
-        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
     };
 
     //obtiene el listado de amigos de un usuario especifico
@@ -57,7 +57,7 @@ var facebook_user = new function () {
     this.get = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
         var query = $.format('SELECT uid, first_name, last_name, name, sex, username, relationship_status, birthday FROM user WHERE uid=%d', objid);
-        SimpleFBJs.helper.callFqlQuery(query, functionCallBack);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
     };
 
     //retorna url de imagen de 50x50 sin necesidad de estar logueado.
