@@ -24,6 +24,16 @@ var facebook_helper = new function () {
             facebook_helper.newException('the session is null');
         }
     };
+    
+    //función generica para publicar diferentes acciones
+    this.callPublishAction = function (objectid, action, args, functionCallBack) {
+
+        FB.api($.format('/%s/%s', [objectid, action]), 'post', args,
+        function (response) {
+            facebook_helper.createAndExectuteCallBack(functionCallBack, response);
+        });
+
+    };
 
     //conjunto de acciones a disparar cuando un usuario se loguee, o haga refresh en la pagina y se encuentre logueado
     this.makeLoginActions = function () {

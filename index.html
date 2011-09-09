@@ -26,7 +26,7 @@
 
     js2fb.helper.setLoginButtonId('loginContainer');
     js2fb.helper.setLogoutButtonId('logoutContainer');
-    js2fb.initAndLogin('266713253341903');
+    js2fb.initAndLogin('157722050978120');
     //alert(js2fb.user.getReferenceUri());
     
 //    facebook.user().loadMe(function (response) {
@@ -62,9 +62,20 @@
 //                    });
 
 
-    js2fb.friend.getListByRelationshipStatus(null, js2fb.enums.relationShipStatus.Single, function (response) {
-        alert(response.length);
+//    js2fb.friend.getListByRelationshipStatus(null, js2fb.enums.relationShipStatus.Single, function (response) {
+//        alert(response.length);
+    //    });
+
+//    js2fb.publish.feed('test4', 'http://www.quenosecorte.com/img/logo_INVITACION.jpg', 'http://google.com', 'name', 'description', function (response) {
+//        alert(response.error);
+//                });
+
+
+    js2fb.publish.comment('127091642220', 'test_comment', function (response) {
+        alert(response.error);
     });
+    
+    
 </script>
 </body>
 </html>

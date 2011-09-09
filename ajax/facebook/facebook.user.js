@@ -52,11 +52,11 @@ var facebook_user = new function () {
         js2fb.helper.callFqlQuery(query, functionCallBack);
     };
 
-    //obtiene el listado de amigos de un usuario especifico
-    //perms: basic, user_relationships, user_birthday, friend_birthday
+    //obtiene un usuario especifico
+    //perms: basic, user_relationships, user_birthday, friend_birthday, email
     this.get = function (facebookid, functionCallBack) {
         var objid = (facebookid) ? facebookid : FB.getSession().uid;
-        var query = $.format('SELECT uid, first_name, last_name, name, sex, username, relationship_status, birthday FROM user WHERE uid=%d', objid);
+        var query = $.format('SELECT uid, first_name, last_name, name, sex, username, relationship_status, birthday, email FROM user WHERE uid=%d', objid);
         js2fb.helper.callFqlQuery(query, functionCallBack);
     };
 
