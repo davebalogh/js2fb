@@ -73,6 +73,10 @@ var game = new function () {
         $('#suspect_02').attr('src', 'http://graph.facebook.com/' + game.falseSuspects.second.facebookid + '/picture');
         $('#suspect_03').attr('src', 'http://graph.facebook.com/' + game.accomplice.facebookid + '/picture');
 
+        $('#suspect_01').attr('title', game.falseSuspects.first.name);
+        $('#suspect_02').attr('title', game.falseSuspects.second.name);
+        $('#suspect_03').attr('title', game.accomplice.name);
+
         $('#suspect_01_button').click(function () {
             game.showUser(game.falseSuspects.first);
         });

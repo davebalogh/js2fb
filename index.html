@@ -26,6 +26,9 @@
 
     js2fb.helper.setLoginButtonId('loginContainer');
     js2fb.helper.setLogoutButtonId('logoutContainer');
+    js2fb.loginEvent = function (parameters) {
+        window.location = 'game/play.html';
+    };
     js2fb.initAndLogin('157722050978120');
     //alert(js2fb.user.getReferenceUri());
     
@@ -71,9 +74,9 @@
 //                });
 
 
-    js2fb.publish.comment('127091642220', 'test_comment', function (response) {
-        alert(response.error);
-    });
+    //js2fb.publish.comment('127091642220', 'test_comment', function (response) {
+     //   alert(response.error);
+    //});
     
     
 </script>

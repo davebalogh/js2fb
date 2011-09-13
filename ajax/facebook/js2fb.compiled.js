@@ -614,6 +614,10 @@ var js2fb = new function () {
 
     this.appId = '';
 
+    this.loginEvent = function(parameters) {
+        //do nothing
+    };
+
 
     //función que se debe llamar inicialmente para cargar la app e inicilizar las clases de FB
     this.initAndLogin = function (appId) {
@@ -624,11 +628,13 @@ var js2fb = new function () {
             cookie: true, // enable cookies to allow the server to access the session
             xfbml: true  // parse XFBML
         });
-
+        FB.Event.subscribe('auth.login', function (responseLogin) {
+            helper.makeLoginActions();
+            js2fb.helper.createAndExectuteCallBack(js2fb.loginEvent, responseLogin);
+        });
+        
         if (FB.getSession() != null) {
-            FB.Event.subscribe('auth.login', function (responseLogin) {
-                helper.makeLoginActions();
-            });
+
             helper.makeLoginActions(); ;
         }
         else {
