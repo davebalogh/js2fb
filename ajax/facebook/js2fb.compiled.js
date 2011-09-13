@@ -165,6 +165,14 @@ var facebook_friend = new function () {
         var query = $.format('SELECT uid, first_name, last_name, name, sex, username, relationship_status FROM user WHERE relationship_status=\'%s\' and uid in (SELECT uid2 FROM friend WHERE uid1=%d)', [relationship_status, objid]);
         js2fb.helper.callFqlQuery(query, functionCallBack);
     };
+
+    //obtiene el listado de amigos de un usuario especifico limitando la cantidad
+    //perms: basic, user_relationships, friends_relationships
+    this.getListByLimit = function (facebookid, limit, functionCallBack) {
+        var objid = (facebookid) ? facebookid : FB.getSession().uid;
+        var query = $.format('SELECT uid, first_name, last_name, name, sex, username, relationship_status FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=%d LIMIT %d)', [objid,limit]);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
+    };
 };﻿
 var facebook_helper = new function () {
     //private properties
@@ -191,7 +199,7 @@ var facebook_helper = new function () {
             facebook_helper.newException('the session is null');
         }
     };
-    
+
     //función generica para publicar diferentes acciones
     this.callPublishAction = function (objectid, action, args, functionCallBack) {
 
@@ -232,7 +240,9 @@ var facebook_helper = new function () {
 
     //excepciones llamadas de funciones para dar avisos o para hacer debug de la app
     this.newException = function (msg) {
-        alert(msg);
+        window.location.reload();
+        //debug
+        //alert(msg);
     };
 
     //helper para calcular edad del usuario en base a su fecha de nacimiento
@@ -309,6 +319,7 @@ var facebook_helper = new function () {
 
         return myYear;
     };
+
 
 };﻿
 var facebook_page = new function () {
@@ -600,10 +611,13 @@ var js2fb = new function () {
     this.photo = photo;
     this.tag = tag;
     this.publish = publish;
-    
+
+    this.appId = '';
+
 
     //función que se debe llamar inicialmente para cargar la app e inicilizar las clases de FB
     this.initAndLogin = function (appId) {
+        js2fb.appId = appId;
         FB.init({
             appId: appId,
             status: true, // check login status
@@ -624,6 +638,7 @@ var js2fb = new function () {
     };
 
 
+
     //logout
     this.logout = function () {
         FB.logout(function (response) {
@@ -631,5 +646,11 @@ var js2fb = new function () {
 
             helper.makeLogoutActions();
         });
+    };
+
+    //redirect to put in a iframe in facebook
+    this.redirectToPerms = function (appId, next, perms) {
+        var uri = "https://www.facebook.com/login.php?api_key=%s&cancel_url=&display=page&fbconnect=1&next=%s&return_session=1&session_version=3&v=1.0&req_perms=%s";
+        top.location.href = $.format(uri, [appId, next, perms]);
     };
 };

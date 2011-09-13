@@ -24,7 +24,7 @@ var facebook_helper = new function () {
             facebook_helper.newException('the session is null');
         }
     };
-    
+
     //función generica para publicar diferentes acciones
     this.callPublishAction = function (objectid, action, args, functionCallBack) {
 
@@ -65,7 +65,9 @@ var facebook_helper = new function () {
 
     //excepciones llamadas de funciones para dar avisos o para hacer debug de la app
     this.newException = function (msg) {
-        alert(msg);
+        window.location.reload();
+        //debug
+        //alert(msg);
     };
 
     //helper para calcular edad del usuario en base a su fecha de nacimiento
@@ -142,5 +144,6 @@ var facebook_helper = new function () {
 
         return myYear;
     };
+
 
 };

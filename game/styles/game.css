@@ -1,0 +1,140 @@
+﻿	#container
+	{
+		width:500px; height: 293px; background-image: url(../images/background.jpg);
+		font-family: Lucida Console, Verdana, Arial;
+		color: #FFF;
+		font-size: 11px;
+		font-weight: bold;
+	}
+	#left 
+	{
+		float: left;
+		width: 230px;
+		height: 293px;
+	}
+	#left_header
+	{
+		width: 230px;
+		height: 50px;
+	}
+	#left_bottom
+	{
+		width: 230px;
+		height: 248px;
+	}
+	#img_container
+	{
+		width: 214px;
+		height: 230px;
+		overflow: hidden;
+		margin: 5px;
+	}
+	#header_text
+	{
+		padding-top: 15px;
+	}
+	#right 
+	{
+		float: left;
+		width: 260px;
+		height: 293px;
+	}
+	#right_title
+	{
+		margin: 10px 10px 0 10px;
+		text-align: center;
+	}
+	#right_text
+	{
+		margin: 15px 8px 10px 14px;
+		text-align: left;
+	}
+	#right_top
+	{
+		width: 260px;
+		height: 234px;
+	}
+	#right_bottom
+	{
+		height: 60px;
+		margin-left: 5px;
+		overflow: hidden;
+		width: 264px;
+	}
+	#right_bottom div
+	{
+		float: left;
+		
+	}
+	#messagebox
+	{
+		background-image: url("../images/messagebox.jpg");
+		color: #FFFFFF;
+		font-family: Lucida Console,Verdana,Arial;
+		font-size: 11px;
+		font-weight: bold;
+		height: 222px;
+		margin-top: -264px;
+		position: relative;
+		width: 372px;
+		display: none;
+	}
+	#messageText
+	{
+		margin: 70px 15px 15px 15px;
+		position: absolute;
+		text-align: justify;
+		
+	}
+	#messageHeader
+	{
+		margin: 10px;
+		position: absolute;
+		text-align: right;
+		width: 348px;
+	}
+	
+	
+	#messageFriends
+	{
+		background-image: url("../images/messagebox.jpg");
+		color: #FFFFFF;
+		font-family: Lucida Console,Verdana,Arial;
+		font-size: 11px;
+		font-weight: bold;
+		height: 222px;
+		margin-top: -264px;
+		position: relative;
+		width: 372px;
+		display: none;
+	}
+	#friendsText
+	{
+		margin: 50px 15px 15px 15px;
+		position: absolute;
+		text-align: center;
+		
+	}
+	#friendsHeader
+	{
+		margin: 10px;
+		position: absolute;
+		text-align: right;
+		width: 348px;
+	}
+	#friendsPicts
+	{
+		position: absolute;
+		margin: 110px 10px 0 70px;
+		overflow: hidden;
+		width: 370px;
+		height: 70px;
+	}
+	#friendsPicts div
+	{
+		float: left;
+		margin-right: 40px;
+		border: 3px solid #FFF;
+		height: 50px;
+		width: 50px;
+	}

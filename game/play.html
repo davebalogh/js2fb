@@ -1,0 +1,71 @@
+﻿
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Where in Facebook is Carmen San Diego</title>
+	<script type="text/javascript" src="../ajax/jquery/jquery-1.6.min.js"></script>
+	<script type="text/javascript" src="../ajax/jquery/jquery.format.js"></script>
+	<script type="text/javascript" src="../ajax/facebook/js2fb.compiled.js"></script>
+
+     <script type="text/javascript" src="javascripts/jTypeWriter.js"></script>
+    <script type="text/javascript" src="javascripts/game.js"></script>
+    
+    <link href="styles/game.css"  type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<center>
+    <div id="container">
+        <div id="left">
+            <div id="left_header">
+                <div id="header_text"></div>
+            </div>
+            <div id="left_bottom">
+	            <div id="img_container"><img id="fb_img" src="" width="220"/></div>
+            </div>
+        </div>
+        <div id="right">
+            <div id="right_top">
+                <div id="right_title">&nbsp;</div>
+                <div id="right_text"></div>
+            </div>
+
+            <div id="right_bottom">
+                <div id="icon_see"><a href="javascript:void(0);" onclick="window.location.reload();"><img src="images/see.jpg" border="0"/></a></div>
+                <div id="icon_depart"><a href="javascript:void(0);" onclick="game.showSuspects();"><img src="images/depart.jpg" border="0"/></a></div>
+                <div id="icon_lead"><a href="javascript:void(0);" onclick="game.writeLead();"><img src="images/lead.jpg" border="0"/></a></div>
+                <div id="icon_crime"><img src="images/crime.jpg" border="0"/></div>
+            </div>
+        </div>
+    </div>
+    <div id="messagebox">
+        <div id="messageHeader"><a href="javascript:void(0);" onclick="$('#messagebox').hide()"><img border="0" src="images/close-box.gif"/></a></div>
+        <div id="messageText"></div>
+    </div>
+
+    <div id="messageFriends">
+        <div id="friendsHeader"><a href="javascript:void(0);" onclick="$('#messageFriends').hide()"><img border="0" src="images/close-box.gif"/></a></div>
+        <div id="friendsText"></div>
+        <div id="friendsPicts">
+            <div><a id="suspect_01_button" href="javascript:void(0);" onclick="javascript:void(0);"><img id="suspect_01" src="" border="0"/></a></div>
+            <div><a id="suspect_02_button" href="javascript:void(0);" onclick="javascript:void(0);"><img id="suspect_02" src="" border="0"/></a></div>
+            <div><a id="suspect_03_button" href="javascript:void(0);" onclick="javascript:void(0);"><img id="suspect_03" src="" border="0"/></a></div>
+        </div>
+    </div>
+</center>
+<script type="text/javascript">
+
+
+		js2fb.initAndLogin('157722050978120');
+		js2fb.user.loadMe(function (response) {
+		    game.init(response);
+		});
+
+
+
+</script>
+</body>
+</html>

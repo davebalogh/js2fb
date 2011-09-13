@@ -4,7 +4,7 @@
     <title></title>
     <script type="text/javascript" src="ajax/jquery/jquery-1.6.min.js"></script>
     <script type="text/javascript" src="ajax/jquery/jquery.format.js"></script>
-    <script type="text/javascript" src="ajax/facebook/js2fb.min.js"></script>
+    <script type="text/javascript" src="ajax/facebook/js2fb.compiled.js"></script>
    
      
 </head>
@@ -14,12 +14,12 @@
 
 <div id="loginContainer">
     <fb:login-button v="2" size="medium"
-    perms="publish_stream,email,user_birthday,user_relationships,user_photos,user_videos,user_status,user_about_me,user_activities,user_events,user_groups,user_interests,friends_photos,user_relationships,friends_relationships">
+    perms="publish_stream,email,user_birthday,user_relationships,user_photos,user_videos,user_status,friends_status,user_about_me,user_activities,user_events,user_groups,user_interests,friends_photos,user_relationships,friends_relationships">
         <fb:intl>Conect&aacute; con Facebook</fb:intl>
     </fb:login-button>
 </div>
 <div id="logoutContainer">
-<a href="javascript:void(0)" onclick="SimpleFBJs.logout();">salir</a>
+<a href="javascript:void(0)" onclick="js2fb.logout();">salir</a>
 </div>
 <script type="text/javascript">
 

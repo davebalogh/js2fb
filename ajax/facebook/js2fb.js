@@ -26,10 +26,13 @@ var js2fb = new function () {
     this.photo = photo;
     this.tag = tag;
     this.publish = publish;
-    
+
+    this.appId = '';
+
 
     //función que se debe llamar inicialmente para cargar la app e inicilizar las clases de FB
     this.initAndLogin = function (appId) {
+        js2fb.appId = appId;
         FB.init({
             appId: appId,
             status: true, // check login status
@@ -50,6 +53,7 @@ var js2fb = new function () {
     };
 
 
+
     //logout
     this.logout = function () {
         FB.logout(function (response) {
@@ -57,5 +61,11 @@ var js2fb = new function () {
 
             helper.makeLogoutActions();
         });
+    };
+
+    //redirect to put in a iframe in facebook
+    this.redirectToPerms = function (appId, next, perms) {
+        var uri = "https://www.facebook.com/login.php?api_key=%s&cancel_url=&display=page&fbconnect=1&next=%s&return_session=1&session_version=3&v=1.0&req_perms=%s";
+        top.location.href = $.format(uri, [appId, next, perms]);
     };
 };

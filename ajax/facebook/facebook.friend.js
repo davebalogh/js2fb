@@ -30,4 +30,12 @@ var facebook_friend = new function () {
         var query = $.format('SELECT uid, first_name, last_name, name, sex, username, relationship_status FROM user WHERE relationship_status=\'%s\' and uid in (SELECT uid2 FROM friend WHERE uid1=%d)', [relationship_status, objid]);
         js2fb.helper.callFqlQuery(query, functionCallBack);
     };
+
+    //obtiene el listado de amigos de un usuario especifico limitando la cantidad
+    //perms: basic, user_relationships, friends_relationships
+    this.getListByLimit = function (facebookid, limit, functionCallBack) {
+        var objid = (facebookid) ? facebookid : FB.getSession().uid;
+        var query = $.format('SELECT uid, first_name, last_name, name, sex, username, relationship_status FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=%d LIMIT %d)', [objid,limit]);
+        js2fb.helper.callFqlQuery(query, functionCallBack);
+    };
 };
